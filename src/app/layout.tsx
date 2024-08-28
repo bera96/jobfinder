@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
-import ClientOnlyWrapper from "@/components/ClientOnlyWrapper";
+import ClientOnlyWrapper from "@/utils/ClientOnlyWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
