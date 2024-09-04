@@ -1,3 +1,5 @@
+import Dashboard from "@/layout/dashboard/dashboard";
+
 export default function Home() {
-  return <div>jobfinder</div>;
+  return <Dashboard />;
 }
