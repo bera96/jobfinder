@@ -9,10 +9,8 @@ import Logo from "../logo/Logo";
 import LanguageSwitcher from "../language/LanguageSwitcher";
 
 const Header = () => {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { user, clearAuth, setUser } = useAuthStore();
+  const { user, clearAuth, setUser, modalStatuses, setModalStatuses } = useAuthStore();
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -72,13 +70,13 @@ const Header = () => {
             <div className="flex gap-5">
               <button
                 className="px-4 py-2 border-2 rounded-lg text-center"
-                onClick={() => setShowLoginModal(!showLoginModal)}
+                onClick={() => setModalStatuses({ login: true, register: false })}
               >
                 Login
               </button>
               <button
                 className="border px-4 py-2 rounded-lg text-center bg-black text-white"
-                onClick={() => setShowRegisterModal(!showRegisterModal)}
+                onClick={() => setModalStatuses({ login: false, register: true })}
               >
                 Sign Up
               </button>
@@ -95,12 +93,8 @@ const Header = () => {
           )}
         </div>
       </nav>
-      {showLoginModal && (
-        <LoginModal showStatus={showLoginModal} setShowStatus={setShowLoginModal} />
-      )}
-      {showRegisterModal && (
-        <RegisterModal showStatus={showRegisterModal} setShowStatus={setShowRegisterModal} />
-      )}
+      {modalStatuses.login && <LoginModal />}
+      {modalStatuses.register && <RegisterModal />}
     </>
   );
 };
